@@ -1,0 +1,10 @@
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\bin\Debug\MailClient.exe.config
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\bin\Debug\MailClient.exe
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\bin\Debug\MailClient.pdb
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.csprojResolveAssemblyReference.cache
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.Form1.resources
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.Properties.Resources.resources
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.csproj.GenerateResource.Cache
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.csproj.CoreCompileInputs.cache
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.exe
+C:\Users\black\source\repos\MailClient\MailClient\MailClient\obj\Debug\MailClient.pdb
