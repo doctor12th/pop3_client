@@ -20,6 +20,8 @@ namespace MailClient
         private Result _ServerResponse = new Result();
         private int _Index = 0;
 
+        public List<string> Uids;
+
         public int MessageCount = 0;
         public int MessagesSize = 0;
 
@@ -37,8 +39,6 @@ namespace MailClient
             this._Password = password;
             this._Port = port;
             this._UserName = userName;
-
-
             this.Connect();
         }
 
@@ -195,7 +195,7 @@ namespace MailClient
             StringBuilder result = new StringBuilder(_Socket.ReceiveBufferSize);
             int s = 0;
             // если будут проблемы с Poll, увеличьте время с 1000000 мс до ...
-            while (_Socket.Poll(10000000, SelectMode.SelectRead) && (s = _Socket.Receive(b, _Socket.ReceiveBufferSize, SocketFlags.None)) > 0)
+            while (_Socket.Poll(100000, SelectMode.SelectRead) && (s = _Socket.Receive(b, _Socket.ReceiveBufferSize, SocketFlags.None)) > 0)
             {
                 result.Append(System.Text.Encoding.ASCII.GetChars(b, 0, s));
             }
@@ -212,8 +212,7 @@ namespace MailClient
             byte[] b = new byte[_Socket.ReceiveBufferSize];
             StringBuilder result = new StringBuilder(_Socket.ReceiveBufferSize);
             int s = 0;
-            // если будут проблемы с Poll, увеличьте время с 1000000 мс до ...
-            while (_Socket.Poll(1000, SelectMode.SelectRead) && ((s = _Socket.Receive(b, _Socket.ReceiveBufferSize, SocketFlags.None)) > 0))
+            while (_Socket.Poll(1000000, SelectMode.SelectRead) && ((s = _Socket.Receive(b, _Socket.ReceiveBufferSize, SocketFlags.None)) > 0))
             {
                 result.Append(System.Text.Encoding.ASCII.GetChars(b, 0, s));
             }
@@ -228,7 +227,23 @@ namespace MailClient
             return result.ToString();
         }
 
-        private void WriteToLog(string msg, params object[] args)
+        public bool CheckNewMessages()
+        {
+            Command("UIDL");
+            _ServerResponse = ReadToEnd();
+            if (_ServerResponse.IsError)
+            {
+                throw new Exception(_ServerResponse.ServerMessage);
+            }
+            Uids = _ServerResponse.ParseUids(_ServerResponse.Body, MessageCount);
+            if (Uids.Equals(_ServerResponse.ParseUids(_ServerResponse.Body, MessageCount)))
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public void WriteToLog(string msg, params object[] args)
         {
             Console.WriteLine("{0}: {1}", DateTime.Now, String.Format(msg, args));
         }

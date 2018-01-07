@@ -15,8 +15,8 @@ namespace MailClient
 
         private string _Source = String.Empty;
         private Dictionary<string, object> _Headers = null;
-        private Pop3Lib.MIME.ContentType _ContentType = null;
-        private Pop3Lib.MIME.ContentDisposition _ContentDisposition = null;
+        private ContentType _ContentType = null;
+        private ContentDisposition _ContentDisposition = null;
         private string _ContentTransferEncoding = String.Empty;
         private object _Data = null;
 
@@ -36,10 +36,12 @@ namespace MailClient
             get { return _Headers; }
         }
 
+        
+
         /// <summary>
         /// Тип содержимого
         /// </summary>
-        public Pop3Lib.MIME.ContentType ContentType
+        public ContentType ContentType
         {
             get { return _ContentType; }
         }
@@ -47,7 +49,7 @@ namespace MailClient
         /// <summary>
         /// Дополнительная информация о содержимом
         /// </summary>
-        public Pop3Lib.MIME.ContentDisposition ContentDisposition
+        public ContentDisposition ContentDisposition
         {
             get { return _ContentDisposition; }
         }
@@ -128,6 +130,7 @@ namespace MailClient
                 h = source.Substring(0, headersTail);
             }
             _Headers = ParseHeaders(h);
+            
 
             if (headersTail == -1) return; // если тела письма нет, то смысла его искать тоже нет
 
@@ -142,16 +145,16 @@ namespace MailClient
             // тип содержимого
             if (_Headers.ContainsKey("Content-Type"))
             {
-                _ContentType = new Pop3Lib.MIME.ContentType(_Headers["Content-Type"].ToString());
+                _ContentType = new ContentType(_Headers["Content-Type"].ToString());
             }
             else
             {
-                _ContentType = new Pop3Lib.MIME.ContentType("");// создаем пустой тип содержимого, чтобы не возникало исключений
+                _ContentType = new ContentType("");// создаем пустой тип содержимого, чтобы не возникало исключений
             }
             // дополнительная информация о содержимом, если данные бинарные 
             if (_Headers.ContainsKey("Content-Disposition"))
             {
-                _ContentDisposition = new Pop3Lib.MIME.ContentDisposition(_Headers["Content-Disposition"].ToString());
+                _ContentDisposition = new ContentDisposition(_Headers["Content-Disposition"].ToString());
             }
 
             // смотрим, какой тип содержимого в данном письме

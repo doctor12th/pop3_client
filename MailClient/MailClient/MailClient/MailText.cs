@@ -27,11 +27,16 @@ namespace MailClient
 
     private TextFormat _Format = TextFormat.Unknown;
     private string _Data = String.Empty;
+        public string Data
+        {
+            get { return _Data; }
+        }
 
-    /// <summary>
-    /// Формат письма (обычный текст, html или rtf)
-    /// </summary>
-    public TextFormat Format
+
+        /// <summary>
+        /// Формат письма (обычный текст, html или rtf)
+        /// </summary>
+        public TextFormat Format
     {
       get { return _Format; }
     }
@@ -39,10 +44,7 @@ namespace MailClient
     /// <summary>
     /// Текст письма
     /// </summary>
-    public string Data
-    {
-      get { return _Data; }
-    }
+    
 
     public MailText(string data, TextFormat format): base()
     {

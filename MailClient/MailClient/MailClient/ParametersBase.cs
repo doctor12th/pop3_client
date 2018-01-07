@@ -1,18 +1,11 @@
-﻿/*
- * Пример к статье: Получение почты по протоколу POP3 и обработка MIME
- * Автор: Алексей Немиро
- * http://aleksey.nemiro.ru
- * Специально для Kbyte.Ru
- * http://kbyte.ru
- * 27 августа 2011 года
- */
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Pop3Lib.MIME
+namespace MailClient
 {
   /// <summary>
   /// Базовый класс для обработки параметров в значения MIME-заголовков

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace MailClient
 {
@@ -81,6 +82,36 @@ namespace MailClient
             int.TryParse(m.Groups["size"].Value, out messagesSize);
         }
 
+        /// <summary>
+        /// Парсим ответ сервера на команду UIDL
+        /// </summary>
+        /// <param name="b">Исходный текст</param>
+        /// <param name="messageCount">Количество сообщений</param>
+        /// <returns></returns>
+        public List<string> ParseUids(string b, int messageCount)
+        {
+            string pattern = @"\s\d+\s";
+            if (b != null && b != "")
+            {
+                string b1 = b.Replace("\r\n", " ");
+                string[] uids = new string[messageCount];
+                string[] separator = { " " };
+                b1 = Regex.Replace(b1, pattern, " ");
+                uids = b1.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                List<string> uid = new List<string>();
+                foreach (var item in uids)
+                {
+                    uid.Add(item);
+                }
+                uid.RemoveAt(0);
+                uid.RemoveAt(uid.IndexOf("."));
+                return uid;
+            }
+            else MessageBox.Show("There is no answer from server.");
+            return null;
+            
+            
+        }
         /// <summary>
         /// Метод передает обработанное письмо на основе данных, полученных от почтового сервера
         /// </summary>

@@ -55,7 +55,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MailBinary.cs" />
-    <Compile Include="MailClient.cs" />
     <Compile Include="MailItem.cs" />
     <Compile Include="MailItemBase.cs" />
     <Compile Include="MailItemCollection.cs" />

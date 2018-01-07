@@ -8,7 +8,7 @@ namespace MailClient
   public class MailBinary : MailItemBase
   {
     private byte[] _Data = null;
-    private Pop3Lib.MIME.ContentDisposition _ContentDisposition = null;
+    private ContentDisposition _ContentDisposition = null;
 
     /// <summary>
     /// Тело вложения
@@ -21,7 +21,7 @@ namespace MailClient
     /// <summary>
     /// Дополнительная информация о вложении
     /// </summary>
-    public new Pop3Lib.MIME.ContentDisposition ContentDisposition
+    public new ContentDisposition ContentDisposition
     {
       get { return _ContentDisposition; }
     }
@@ -38,7 +38,7 @@ namespace MailClient
       }
     }
 
-    public MailBinary(byte[] data, Pop3Lib.MIME.ContentDisposition contentDisposition) : base()
+    public MailBinary(byte[] data, ContentDisposition contentDisposition) : base()
     {
       _Data = data;
       _ContentDisposition = contentDisposition;

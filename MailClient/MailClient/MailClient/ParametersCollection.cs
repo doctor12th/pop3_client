@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Pop3Lib.MIME
+namespace MailClient
 {
   public class ParametersCollection: Dictionary<string, string>
   {

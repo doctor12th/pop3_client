@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Pop3Lib.MIME
+namespace MailClient
 {
   /// <summary>
   /// Объектное представление MIME-заголовка Content-Type
